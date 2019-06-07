@@ -6,7 +6,6 @@ using System.Runtime.InteropServices;
 using System.Net;
 using System.Text;
 
-[System.Serializable]
 public class Scraper
 {
     public string Scraping()
