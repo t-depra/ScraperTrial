@@ -27,7 +27,3 @@ public class Scraper
         return responseText;
     }
 }
-/*public class Scraper
-{
-    
-}*/

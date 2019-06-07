@@ -4,6 +4,25 @@ using Microsoft.WindowsAzure.Storage.Blob;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+
+public class ScraperFileStore
+{
+    public void SaveScrapedFile()
+    {
+        string storageKey = "DefaultEndpointsProtocol=https;AccountName=scrapertrialstorage;AccountKey=lrP3oq1JRMU7sYsCDs4CHzL83VqPExKL4YW46aVcQzByG/2z2eNKFLFa2Eocge67/CO/zEklNKXnKKoWU/gQPw==;EndpointSuffix=core.windows.net";
+        CloudStorageAccount storageAccount = CloudStorageAccount.Parse(storageKey);
+        CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+        CloudBlobContainer container = blobClient.GetContainerReference("scrapedfiles");
+        CloudBlockBlob blockBlob = container.GetBlockBlobReference("scrapertrialstorage");
+        using (var fileStream = System.IO.File.OpenRead(@"C:\Users\t-depra\Desktop\scraped.txt"))
+        {
+            blockBlob.UploadFromStreamAsync(fileStream);
+        }
+    }
+}
+
+
+// tried the approach below but it's incomplete/did not work 
 /*
 namespace ScraperTrial.Services
 {
@@ -26,22 +45,5 @@ namespace ScraperTrial.Services
 }
 
 */
-// Retrieve storage account from connection string.
 
-public class ScraperFileStore
-{
-    public void SaveScrapedFile()
-    {
-        string storageKey = "DefaultEndpointsProtocol=https;AccountName=scrapertrialstorage;AccountKey=lrP3oq1JRMU7sYsCDs4CHzL83VqPExKL4YW46aVcQzByG/2z2eNKFLFa2Eocge67/CO/zEklNKXnKKoWU/gQPw==;EndpointSuffix=core.windows.net";
-        CloudStorageAccount storageAccount = CloudStorageAccount.Parse(storageKey);
-        CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
-        CloudBlobContainer container = blobClient.GetContainerReference("scrapedfiles");
-        CloudBlockBlob blockBlob = container.GetBlockBlobReference("scrapertrialstorage");
-        using (var fileStream = System.IO.File.OpenRead(@"C:\Users\t-depra\Desktop\scraped.txt"))
-        {
-            blockBlob.UploadFromStreamAsync(fileStream);
-        }
-    }
-}
 
-        
