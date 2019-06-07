@@ -1,0 +1,8 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    var scrape = new Scraper();
+    var file = new ScraperFileStore();
+}
+
+@scrape.Scraping()
+@{file.SaveScrapedFile();}
