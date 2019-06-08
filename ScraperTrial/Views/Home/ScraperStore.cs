@@ -9,8 +9,8 @@ public class ScraperFileStore
 {
     public void SaveScrapedFile()
     {
-        string storageKey = "DefaultEndpointsProtocol=https;AccountName=scrapertrialstorage;AccountKey=lrP3oq1JRMU7sYsCDs4CHzL83VqPExKL4YW46aVcQzByG/2z2eNKFLFa2Eocge67/CO/zEklNKXnKKoWU/gQPw==;EndpointSuffix=core.windows.net";
-        CloudStorageAccount storageAccount = CloudStorageAccount.Parse(storageKey);
+        string connectionString = "DefaultEndpointsProtocol=https;AccountName=scrapertrialstorage;AccountKey=lrP3oq1JRMU7sYsCDs4CHzL83VqPExKL4YW46aVcQzByG/2z2eNKFLFa2Eocge67/CO/zEklNKXnKKoWU/gQPw==;EndpointSuffix=core.windows.net";
+        CloudStorageAccount storageAccount = CloudStorageAccount.Parse(connectionString);
         CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
         CloudBlobContainer container = blobClient.GetContainerReference("scrapedfiles");
         CloudBlockBlob blockBlob = container.GetBlockBlobReference("scrapertrialstorage");

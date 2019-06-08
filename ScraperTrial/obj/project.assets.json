@@ -11927,11 +11927,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\t-depra\\source\\repos\\ScraperTrial\\ScraperTrial\\ScraperTrial.csproj",
+      "projectUniqueName": "C:\\Users\\t-depra\\ScraperTrial\\ScraperTrial\\ScraperTrial.csproj",
       "projectName": "ScraperTrial",
-      "projectPath": "C:\\Users\\t-depra\\source\\repos\\ScraperTrial\\ScraperTrial\\ScraperTrial.csproj",
+      "projectPath": "C:\\Users\\t-depra\\ScraperTrial\\ScraperTrial\\ScraperTrial.csproj",
       "packagesPath": "C:\\Users\\t-depra\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\t-depra\\source\\repos\\ScraperTrial\\ScraperTrial\\obj\\",
+      "outputPath": "C:\\Users\\t-depra\\ScraperTrial\\ScraperTrial\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
