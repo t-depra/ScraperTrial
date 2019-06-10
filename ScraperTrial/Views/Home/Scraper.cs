@@ -10,14 +10,20 @@ using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Blob;
 using System.IO;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 public class Scraper
 {
+    IConfiguration _configuration;
+    public Scraper(IConfiguration configuration)
+    {
+        _configuration = configuration;
+    }
+
     public string Scraping()
     {
         // Scraping webpage 
-        string BingMapsKey = "AvCBj_jgkzN6BB4bx-dGT-vQkOoLtvPrApuuZzIem1pGoAyfbbwgL_JPGZsNNY28";
-        string url = "http://dev.virtualearth.net/REST/V1/Routes/Driving?o=xml&wp.0=london&wp.1=leeds&avoid=minimizeTolls&key=" + BingMapsKey;
+        string url = _configuration["url"];
         HttpWebRequest HttpWReq = (HttpWebRequest)WebRequest.Create(url);
         HttpWebResponse HttpWResp = (HttpWebResponse)HttpWReq.GetResponse();
 
@@ -28,10 +34,9 @@ public class Scraper
             responseText = reader.ReadToEnd();
         }
         HttpWResp.Close();
-        // System.IO.File.WriteAllText(@"C:\Users\t-depra\Desktop\scraped.txt", responseText);
 
         // Storing to Blob Storage 
-        string connectionString = "DefaultEndpointsProtocol=https;AccountName=scrapertrialstorage;AccountKey=lrP3oq1JRMU7sYsCDs4CHzL83VqPExKL4YW46aVcQzByG/2z2eNKFLFa2Eocge67/CO/zEklNKXnKKoWU/gQPw==;EndpointSuffix=core.windows.net";
+        string connectionString = _configuration.GetSection("Data").GetSection("ConnectionString").Value;
         CloudStorageAccount storageAccount = CloudStorageAccount.Parse(connectionString);
         CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
         CloudBlobContainer container = blobClient.GetContainerReference("scrapedfiles");
